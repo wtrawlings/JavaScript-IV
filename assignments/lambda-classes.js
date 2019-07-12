@@ -35,7 +35,7 @@ class Person {
         this.location = props.location;
     }
     speak = function() {
-        return 'Hello, my name is ${this.name}, I am from ${this.location}.';
+        return `Hello, my name is ${this.name}, I am from ${this.location}.`;
     }
 }
 
@@ -60,11 +60,11 @@ class Instructor extends Person {
         this.favLanguage = teaches.favLanguage;
         this.catchPhrase = teaches.catchPhrase;
     }
-    demo = function(subject) {
-        return 'Today we are learning about ${subject}.';
+    demo = function(subjectA) {
+        return `Today we are learning about ${subjectA}.`;
     }
-    grade = function(student, subject) {
-        console.log(student.name + " receives a perfect score on " + this.subject + ".");
+    grade = function(student, subjectA) {
+        console.log(student.name + " receives a perfect score on " + this.subjectA + ".");
     }
 }
 

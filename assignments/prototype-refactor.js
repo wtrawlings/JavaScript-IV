@@ -24,7 +24,7 @@ class GameObject {
         this.dimensions = attr.dimensions;
     }
     destroy() {
-        return '${this.name} was removed from the game.';
+        return `${this.name} was removed from the game.`;
     }
 }
 /*
@@ -45,7 +45,7 @@ class CharacterStats extends GameObject {
         this.healthPoints = charStats.healthPoints;
     }
     takeDamage = function() {
-        return '${this.name} took damage.';
+        return `${this.name} took damage.`;
     }
 }
 
@@ -72,7 +72,7 @@ class Humanoid extends CharacterStats {
         this.language = human.language;
     }
     greet = function() {
-        return '${this.name} offers a greeting in ${this.language}.';
+        return `${this.name} offers a greeting in ${this.language}.`;
     }
 }
 
