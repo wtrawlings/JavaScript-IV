@@ -83,14 +83,44 @@ class Instructor extends Person {
   * `PRAssignment` a method that receives a subject as an argument and logs out that the `student.name has submitted a PR for {subject}`
   * `sprintChallenge` similar to PRAssignment but logs out `student.name has begun sprint challenge on {subject}`
 
-#### Project Manager
+###############STUDENT#################  */
+class Student extends Person {
+    constructor(history) {
+        super(history);
+        this.previousBackground = history.previousBackground;
+        this.className = history.className;
+        this.favSubjects = history.favSubjects;
+    }
+    listsSubjects = function(favSubjects) {
+            console.log(favSubjects);
+        }
+        //Do I need to make a loop to get the array of subjects to come out?
+    PRAssignment = function(subject) {
+        console.log(`${student.name} has submitted a PR for ${subject}.`);
+    }
+    sprintChallenge = function() {
+        console.log(`${student.name} has begun sprint challenge on ${subject}.`);
+    }
+}
 
-* Now that we have instructors and students, we'd be nowhere without our PM's
-* ProjectManagers are extensions of Instructors
-* ProjectManagers have the following unique props:
-  * `gradClassName`: i.e. CS1
-  * `favInstructor`: i.e. Sean
-* ProjectManagers have the following Methods:
-  * `standUp` a method that takes in a slack channel and logs `{name} announces to {channel}, @channel standy times!​​​​​
-  * `debugsCode` a method that takes in a student object and a subject and logs out `{name} debugs {student.name}'s code on {subject}`
-  */
+
+####
+Project Manager
+
+    *
+    Now that we have instructors and students, we 'd be nowhere without our PM'
+s
+    *
+    ProjectManagers are extensions of Instructors *
+    ProjectManagers have the following unique props:
+    *
+    `gradClassName`: i.e.CS1 *
+    `favInstructor`: i.e.Sean *
+    ProjectManagers have the following Methods:
+    *
+    `standUp`
+a method that takes in a slack channel and logs `{name} announces to {channel}, @channel standy times!​​​​​
+  * `
+debugsCode ` a method that takes in a student object and a subject and logs out ` { name }
+debugs { student.name }
+'s code on {subject}` * /
