@@ -27,7 +27,20 @@ const fred = new Instructor({
 * Person receives `name` `age` `location` all as props
 * Person receives `speak` as a method.
 * This method logs out a phrase `Hello my name is Fred, I am from Bedrock` where `name` and `location` are the object's own props
+*/
+class Person {
+    constructor(props) {
+        this.name = props.name;
+        this.age = props.age;
+        this.location = props.location;
+    }
+    speak = function() {
+        return 'Hello, my name is ${this.name}, I am from ${this.location}.';
+    }
+}
 
+
+/*
 #### Instructor
 
 * Now that we have a Person as our base class, we'll build our Instructor class.
@@ -39,7 +52,24 @@ const fred = new Instructor({
 * Instructor has the following methods:
   * `demo` receives a `subject` string as an argument and logs out the phrase 'Today we are learning about {subject}' where subject is the param passed in.
   * `grade` receives a `student` object and a `subject` string as arguments and logs out '{student.name} receives a perfect score on {subject}'
+*/
+class Instructor extends Person {
+    constructor(teaches) {
+        super(teaches);
+        this.specialty = teaches.specialty;
+        this.favLanguage = teaches.favLanguage;
+        this.catchPhrase = teaches.catchPhrase;
+    }
+    demo = function(subject) {
+        return 'Today we are learning about ${subject}.';
+    }
+    grade = function(student, subject) {
+        console.log(student.name + " receives a perfect score on " + this.subject + ".");
+    }
+}
 
+
+/*
 #### Student
 
 * Now we need some students!
