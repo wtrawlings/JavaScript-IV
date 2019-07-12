@@ -7,7 +7,7 @@ Prototype Refactor
 2. Your goal is to refactor all of this code to use ES6 Classes. The console.log() statements should still return what is expected of them.
 
 */
-
+/*
 function GameObject(attr) {
     this.createdAt = attr.createdAt;
     this.name = attr.name;
@@ -16,10 +16,20 @@ function GameObject(attr) {
 GameObject.prototype.destroy = function() {
     return ' ${this.name} was removed from the game.';
 }
-
+*******************GAME OBJECT***********************/
+class GameObject {
+    constructor(attr) {
+        this.createdAt = attr.createdAt;
+        this.name = attr.name;
+        this.dimensions = attr.dimensions;
+    }
+    destroy() {
+        return '${this.name} was removed from the game.';
+    }
+}
 /*
   === CharacterStats ===
-*/
+
 function CharacterStats(charStats) {
     this.healthPoints = charStats.healthPoints;
     GameObject.call(this, charStats);
@@ -28,10 +38,19 @@ CharacterStats.prototype = Object.create(GameObject.prototype);
 CharacterStats.prototype.takeDamage = function() {
     return '${this.name} took damage.';
 }
+++++++++++CHARACTER STATS++++++++++++*/
+class CharacterStats extends GameObject {
+    constructor(charStats) {
+        this.healthPoints = charStats.healthPoints;
+    }
+    takeDamage = function() {
+        return '${this.name} took damage.';
+    }
+}
 
 /*
   === Humanoid (Having an appearance or character resembling that of a human.) ===
-*/
+
 function Humanoid(human) {
     CharacterStats.call(this, human);
     this.team = human.team;
@@ -42,6 +61,18 @@ Humanoid.prototype = Object.create(CharacterStats.prototype);
 Humanoid.prototype.greet = function() {
     return `${this.name} offers a greeting in ${this.language}.`;
 };
++++++++++++++++HUMANOID+++++++++++*/
+
+class Humanoid extends CharacterStats {
+    constructor(human) {
+        this.team = human.team;
+        this.weapons = human.weapons;
+        this.language = human.language;
+    }
+    greet = function() {
+        return '${this.name} offers a greeting in ${this.language}.';
+    }
+}
 
 /*
  * Inheritance chain: GameObject -> CharacterStats -> Humanoid
