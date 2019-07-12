@@ -41,6 +41,7 @@ CharacterStats.prototype.takeDamage = function() {
 ++++++++++CHARACTER STATS++++++++++++*/
 class CharacterStats extends GameObject {
     constructor(charStats) {
+        super(charStats);
         this.healthPoints = charStats.healthPoints;
     }
     takeDamage = function() {
@@ -65,6 +66,7 @@ Humanoid.prototype.greet = function() {
 
 class Humanoid extends CharacterStats {
     constructor(human) {
+        super(human);
         this.team = human.team;
         this.weapons = human.weapons;
         this.language = human.language;
