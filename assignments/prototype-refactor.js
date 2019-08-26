@@ -66,14 +66,14 @@ Humanoid.prototype.greet = function() {
 };
 +++++++++++++++HUMANOID+++++++++++*/
 
-class Humanoid extends CharacterStats {
+class Humanoid extends CharacterStats { //extends- sets where I'm inheriting from
     constructor(human) {
-        super(human);
+        super(human); //this is where parent values are brought into the child
         this.team = human.team;
         this.weapons = human.weapons;
         this.language = human.language;
     }
-    greet = function() {
+    greet = function() { // this is on the prototype of Humanoid and not on the parent
         return `${this.name} offers a greeting in ${this.language}.`;
     }
 }
