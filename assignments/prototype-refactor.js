@@ -43,10 +43,10 @@ CharacterStats.prototype.takeDamage = function() {
 class CharacterStats extends GameObject { //'extends' sets the inheritance
     //notice that class declaration does not have parenthesis.
     constructor(charStats) {
-        super(charStats); // 'super' gives us access to the parent stuff
-        this.healthPoints = charStats.healthPoints;
+        super(charStats); // 'super' this calls the parent constructor and sets the parent properties on the inheriting child
+        this.healthPoints = charStats.healthPoints; // this is only on the child
     }
-    takeDamage = function() {
+    takeDamage = function() { //this funciton is in the prototype
         return `${this.name} took damage.`;
     }
 }
