@@ -18,6 +18,7 @@ GameObject.prototype.destroy = function() {
 }
 *******************GAME OBJECT***********************/
 class GameObject {
+    //notice that class declaration does not have parenthesis.
     constructor(attr) {
         this.createdAt = attr.createdAt;
         this.name = attr.name;
@@ -39,9 +40,10 @@ CharacterStats.prototype.takeDamage = function() {
     return '${this.name} took damage.';
 }
 ++++++++++CHARACTER STATS++++++++++++*/
-class CharacterStats extends GameObject {
+class CharacterStats extends GameObject { //'extends' sets the inheritance
+    //notice that class declaration does not have parenthesis.
     constructor(charStats) {
-        super(charStats);
+        super(charStats); // 'super' gives us access to the parent stuff
         this.healthPoints = charStats.healthPoints;
     }
     takeDamage = function() {
