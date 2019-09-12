@@ -46,7 +46,7 @@ class CharacterStats extends GameObject { //'extends' sets the inheritance
         super(charStats); // 'super' this calls the parent constructor and sets the parent properties on the inheriting child
         this.healthPoints = charStats.healthPoints; // this is only on the child
     }
-    takeDamage = function() { //this funciton is in the prototype
+    takeDamage = function() { //all funcitons in clas are placed in the prototype
         return `${this.name} took damage.`;
     }
 }
@@ -75,7 +75,14 @@ class Humanoid extends CharacterStats { //extends- sets where I'm inheriting fro
     }
     greet = function() { // this is on the prototype of Humanoid and not on the parent
         return `${this.name} offers a greeting in ${this.language}.`;
-    }
+    };
+    bowAttack = function(victim) {
+        victim.healthPoints = victim.healthPoints - 4;
+    };
+    spearAttack = function(victim) {
+        victim.healthPoints = victim.healthPoints - 7;
+    };
+
 }
 
 /*
@@ -149,6 +156,46 @@ console.log(swordsman.destroy()); // Sir Mustachio was removed from the game.
 //
 
 // Stretch task: 
-// * Create Villain and Hero constructor functions that inherit from the Humanoid constructor function.  
+// * Create Villain and Hero constructor functions that inherit from the Humanoid constructor function. 
+const villian = new Humanoid({
+    createdAt: new Date(),
+    dimensions: {
+        length: 1,
+        width: 2,
+        height: 4,
+    },
+    healthPoints: 10,
+    name: 'BadGuy',
+    team: 'Team Evil',
+    weapons: [
+        'Bow',
+        'Dagger',
+    ],
+    language: 'Common',
+});
+
+const hero = new Humanoid({
+    createdAt: new Date(),
+    dimensions: {
+        length: 1,
+        width: 2,
+        height: 4,
+    },
+    healthPoints: 10,
+    name: 'GoodFellas',
+    team: 'Team Goodies',
+    weapons: [
+        'Spear',
+        'Shield',
+    ],
+    language: 'Common',
+});
+
+
 // * Give the Hero and Villains different methods that could be used to remove health points from objects which could result in destruction if health gets to 0 or drops below 0;
+
 // * Create two new objects, one a villain and one a hero and fight it out with methods!
+
+villian.bowAttack(hero);
+hero.spearAttack(villian);
+console.log(`villian current health ${villian.healthPoints}`);
