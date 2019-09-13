@@ -18,6 +18,7 @@ GameObject.prototype.destroy = function() {
 }
 *******************GAME OBJECT***********************/
 class GameObject {
+    //notice that class declaration does not have parenthesis.
     constructor(attr) {
         this.createdAt = attr.createdAt;
         this.name = attr.name;
@@ -39,12 +40,13 @@ CharacterStats.prototype.takeDamage = function() {
     return '${this.name} took damage.';
 }
 ++++++++++CHARACTER STATS++++++++++++*/
-class CharacterStats extends GameObject {
+class CharacterStats extends GameObject { //'extends' sets the inheritance
+    //notice that class declaration does not have parenthesis.
     constructor(charStats) {
-        super(charStats);
-        this.healthPoints = charStats.healthPoints;
+        super(charStats); // 'super' this calls the parent constructor and sets the parent properties on the inheriting child
+        this.healthPoints = charStats.healthPoints; // this is only on the child
     }
-    takeDamage = function() {
+    takeDamage = function() { //all funcitons in clas are placed in the prototype
         return `${this.name} took damage.`;
     }
 }
@@ -64,16 +66,16 @@ Humanoid.prototype.greet = function() {
 };
 +++++++++++++++HUMANOID+++++++++++*/
 
-class Humanoid extends CharacterStats {
+class Humanoid extends CharacterStats { //extends- sets where I'm inheriting from
     constructor(human) {
-        super(human);
+        super(human); //this is where parent values are brought into the child
         this.team = human.team;
         this.weapons = human.weapons;
         this.language = human.language;
     }
-    greet = function() {
+    greet = function() { // this is on the prototype of Humanoid and not on the parent
         return `${this.name} offers a greeting in ${this.language}.`;
-    }
+    };
 }
 
 /*
@@ -147,6 +149,71 @@ console.log(swordsman.destroy()); // Sir Mustachio was removed from the game.
 //
 
 // Stretch task: 
-// * Create Villain and Hero constructor functions that inherit from the Humanoid constructor function.  
+// * Create Villain and Hero constructor functions that inherit from the Humanoid constructor function. 
+
+//villain constructor
+class Villain extends Humanoid {
+    constructor(badDudes) {
+        super(badDudes); //this is where parent values are brought into the child
+        this.team = badDudes.team;
+        this.weapons = badDudes.weapons;
+        this.language = badDudes.language;
+    }
+    bowAttack = function(victim) {
+        victim.healthPoints = victim.healthPoints - 4;
+    };
+}
+class Hero extends Humanoid {
+    constructor(goodDudes) {
+        super(goodDudes); //this is where parent values are brought into the child
+        this.team = goodDudes.team;
+        this.weapons = goodDudes.weapons;
+        this.language = goodDudes.language;
+    }
+    spearAttack = function(victim) {
+        victim.healthPoints = victim.healthPoints - 7;
+    };
+}
+//end of villain constructor
+const sniper = new Villain({
+    createdAt: new Date(),
+    dimensions: {
+        length: 1,
+        width: 2,
+        height: 4,
+    },
+    healthPoints: 10,
+    name: 'BadGuy',
+    team: 'Team Evil',
+    weapons: [
+        'Bow',
+        'Dagger',
+    ],
+    language: 'Common',
+});
+
+const footman = new Hero({
+    createdAt: new Date(),
+    dimensions: {
+        length: 1,
+        width: 2,
+        height: 4,
+    },
+    healthPoints: 10,
+    name: 'GoodFellas',
+    team: 'Team Goodies',
+    weapons: [
+        'Spear',
+        'Shield',
+    ],
+    language: 'Common',
+});
+
+
 // * Give the Hero and Villains different methods that could be used to remove health points from objects which could result in destruction if health gets to 0 or drops below 0;
+
 // * Create two new objects, one a villain and one a hero and fight it out with methods!
+
+sniper.bowAttack(footman);
+footman.spearAttack(sniper);
+console.log(`${sniper.name} current health ${sniper.healthPoints}`);
