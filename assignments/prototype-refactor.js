@@ -76,13 +76,6 @@ class Humanoid extends CharacterStats { //extends- sets where I'm inheriting fro
     greet = function() { // this is on the prototype of Humanoid and not on the parent
         return `${this.name} offers a greeting in ${this.language}.`;
     };
-    bowAttack = function(victim) {
-        victim.healthPoints = victim.healthPoints - 4;
-    };
-    spearAttack = function(victim) {
-        victim.healthPoints = victim.healthPoints - 7;
-    };
-
 }
 
 /*
@@ -157,7 +150,32 @@ console.log(swordsman.destroy()); // Sir Mustachio was removed from the game.
 
 // Stretch task: 
 // * Create Villain and Hero constructor functions that inherit from the Humanoid constructor function. 
-const villian = new Humanoid({
+
+//villian constructor
+class Villian extends Humanoid {
+    constructor(badDudes) {
+        super(badDudes); //this is where parent values are brought into the child
+        this.team = badDudes.team;
+        this.weapons = badDudes.weapons;
+        this.language = badDudes.language;
+    }
+    bowAttack = function(victim) {
+        victim.healthPoints = victim.healthPoints - 4;
+    };
+}
+class Hero extends Humanoid {
+    constructor(goodDudes) {
+        super(goodDudes); //this is where parent values are brought into the child
+        this.team = goodDudes.team;
+        this.weapons = goodDudes.weapons;
+        this.language = goodDudes.language;
+    }
+    spearAttack = function(victim) {
+        victim.healthPoints = victim.healthPoints - 7;
+    };
+}
+//end of villian constructor
+const sniper = new Villian({
     createdAt: new Date(),
     dimensions: {
         length: 1,
@@ -174,7 +192,7 @@ const villian = new Humanoid({
     language: 'Common',
 });
 
-const hero = new Humanoid({
+const footman = new Hero({
     createdAt: new Date(),
     dimensions: {
         length: 1,
@@ -196,6 +214,6 @@ const hero = new Humanoid({
 
 // * Create two new objects, one a villain and one a hero and fight it out with methods!
 
-villian.bowAttack(hero);
-hero.spearAttack(villian);
-console.log(`villian current health ${villian.healthPoints}`);
+sniper.bowAttack(footman);
+footman.spearAttack(sniper);
+console.log(`${sniper.name} current health ${sniper.healthPoints}`);
