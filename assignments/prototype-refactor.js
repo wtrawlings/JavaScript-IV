@@ -151,8 +151,8 @@ console.log(swordsman.destroy()); // Sir Mustachio was removed from the game.
 // Stretch task: 
 // * Create Villain and Hero constructor functions that inherit from the Humanoid constructor function. 
 
-//villian constructor
-class Villian extends Humanoid {
+//villain constructor
+class Villain extends Humanoid {
     constructor(badDudes) {
         super(badDudes); //this is where parent values are brought into the child
         this.team = badDudes.team;
@@ -174,8 +174,8 @@ class Hero extends Humanoid {
         victim.healthPoints = victim.healthPoints - 7;
     };
 }
-//end of villian constructor
-const sniper = new Villian({
+//end of villain constructor
+const sniper = new Villain({
     createdAt: new Date(),
     dimensions: {
         length: 1,
